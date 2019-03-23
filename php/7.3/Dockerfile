@@ -2,8 +2,14 @@ FROM alpine:3.8
 
 LABEL maintainer="Jhonatan Machado <jh.machado12@gmail.com>"
 
-ENV FRAMEWORK=laravel \
-    OPCACHE_MODE="normal" \
+RUN apk add tzdata
+RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+
+ENV TIME_ZONE America/Sao_Paulo
+RUN echo TIME_ZONE > /etc/timezone
+RUN apk del tzdata
+
+ENV OPCACHE_MODE="normal" \
     PHP_MEMORY_LIMIT=256M \
     XDEBUG_ENABLED=false \
     COMPOSER_PROCESS_TIMEOUT=1200
