@@ -1,7 +1,11 @@
-FROM golang
+FROM golang:1.14.2-buster
 
-ADD . /go/src/app
+WORKDIR /go/src/github.com/jhmachado/app
 
-ENTRYPOINT /go/bin/app
+COPY . .
 
-EXPOSE 8080
+EXPOSE 9000
+
+RUN ["go", "get", "github.com/githubnemo/CompileDaemon"]
+
+ENTRYPOINT CompileDaemon -log-prefix=false -directory=./ -command="./app"
