@@ -4,7 +4,7 @@ LABEL maintainer="Jhonatan Machado <jh.machado12@gmail.com>"
 
 RUN echo "---> Installing Environmental Dependencies"
 
-COPY scripts/install-dependencies.sh /
+COPY scripts /
 RUN chmod o+x /install-dependencies.sh
 RUN /install-dependencies.sh
 
@@ -19,9 +19,9 @@ RUN chmod +x /usr/bin/wait-for-it.sh
 
 RUN mkdir /app
 RUN chown www-data:www-data /app
-COPY configs/host.conf /etc/apache2/sites-enabled/000-default.conf
+COPY configs /etc/apache2/sites-enabled/000-default.conf
 
-COPY scripts/entrypoint.sh /
+COPY scripts /
 RUN chmod o+x /entrypoint.sh
 
 WORKDIR /app
