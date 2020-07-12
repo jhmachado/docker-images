@@ -23,6 +23,7 @@ COPY configs/host.conf /etc/apache2/sites-available/laravel_app.conf
 
 RUN a2ensite laravel_app.conf
 RUN a2dissite 000-default.conf
+RUN a2enmod rewrite
 
 COPY scripts/entrypoint.sh /
 RUN chmod o+x /entrypoint.sh

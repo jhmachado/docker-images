@@ -24,6 +24,7 @@ innodb_write_io_threads=1
 table_open_cache=1
 table_open_cache_instances=1
 thread_handling=one-thread-per-connection
+lower_case_table_names=2
 
 # No bin log
 skip-log-bin
