@@ -19,7 +19,10 @@ RUN chmod +x /usr/bin/wait-for-it.sh
 
 RUN mkdir /app
 RUN chown www-data:www-data /app
-COPY configs/host.conf /etc/apache2/sites-enabled/000-default.conf
+COPY configs/host.conf /etc/apache2/sites-available/laravel_app.conf
+
+RUN a2ensite laravel_app.conf
+RUN a2dissite 000-default.conf
 
 COPY scripts/entrypoint.sh /
 RUN chmod o+x /entrypoint.sh
