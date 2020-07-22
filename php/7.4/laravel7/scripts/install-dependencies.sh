@@ -1,9 +1,11 @@
 set -ex
 
 apt-get update && apt-get install -y \
+    apt-utils \
     vim \
     git \
     libzip-dev \
+    zip \
     unzip \
     libpng-dev \
     libonig-dev \
