@@ -8,6 +8,9 @@ COPY scripts/install-dependencies.sh /
 RUN chmod o+x /install-dependencies.sh
 RUN /install-dependencies.sh
 
+COPY configs/xdebug.ini /usr/local/etc/php/conf.d/
+RUN chmod o+x /usr/local/etc/php/conf.d/xdebug.ini
+
 RUN echo "---> Installing Composer" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --allow-root && \
     echo "---> Cleaning up" && \
