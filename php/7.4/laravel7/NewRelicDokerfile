@@ -1,8 +1,8 @@
 FROM jhmachado12/php:7.4-laravel
 
-ARG NEW_RELIC_AGENT_VERSION
-ARG NEW_RELIC_LICENSE_KEY
-ARG NEW_RELIC_APPNAME
+ARG NEW_RELIC_AGENT_VERSION="9.12.0.268"
+ARG NEW_RELIC_LICENSE_KEY="Ticket system"
+ARG NEW_RELIC_APPNAME="Ticket system"
 
 RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VERSION}/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux.tar.gz | tar -C /tmp -zx \
     && export NR_INSTALL_USE_CP_NOT_LN=1 \
