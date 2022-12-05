@@ -1,22 +1,21 @@
-FROM php:8.1.0-fpm AS base
-
-LABEL maintainer="Jhonatan Machado <jh.machado12@gmail.com>"
+FROM php:8.1.0-fpm
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-#
-# Test stage
-# Runs all the tests using composer
-#
-FROM base AS test
 
-CMD ["make test"]
+RUN apt-get update && apt-get install -y git
 
-#
-# App stage
-# Runs the fpm engine so the app can work
-#
-FROM base AS app
+RUN apt-get update && apt-get install -y \
+    apt-utils \
+    git \
+    libzip-dev \
+    zip \
+    unzip
 
-CMD ["php-fpm"]
+RUN mkdir /app
+WORKDIR /app
+
+COPY . .
+
+ENTRYPOINT ["php-fpm"]
